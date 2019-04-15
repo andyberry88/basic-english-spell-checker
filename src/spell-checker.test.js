@@ -20,4 +20,25 @@ describe('spell checker', () => {
             expect(spellChecker('come account able bent cold take')).to.deep.equal([]);
         });
     });
+
+    context('when there are errors', () => {
+        it('should validate a single word as incorrect', () => {
+            expect(spellChecker('invalid')).to.deep.equal(['invalid']);
+        });
+
+        it('should validate 2 words as incorrect', () => {
+            expect(spellChecker('moar invalid')).to.deep.equal(['moar', 'invalid']);
+        });
+
+        it('should validate many words as incorrect', () => {
+            expect(spellChecker('moar invalid wordz simplez oh noz')).to.deep.equal([
+                'moar',
+                'invalid',
+                'wordz',
+                'simplez',
+                'oh',
+                'noz',
+            ]);
+        });
+    });
 });

@@ -69,10 +69,49 @@ describe('spell checker', () => {
                 'noz',
             ]);
         });
+
+        it('should validate part of a single valid as incorrect', () => {
+            expect(spellChecker('advertis')).to.deep.equal(['advertis']);
+        });
     });
 
     it('can perform a spell check on a large amount of text', () => {
         const text = fs.readFileSync(path.resolve(__dirname, '../lorem-ipsum.txt'), 'UTF-8');
         expect(spellChecker(text)).to.not.be.empty;
+    });
+
+    // -s / -es / -ies change singular nouns into plural nouns.
+    context('pural', () => {
+        context('nouns', () => {
+            it('considers "accounts" as a valid word', () => {
+                expect(spellChecker('accounts')).to.deep.equal([]);
+            });
+
+            it('considers "potatoes" as a valid word', () => {
+                expect(spellChecker('potatoes')).to.deep.equal([]);
+            });
+
+            it('considers "babies" as a valid word', () => {
+                expect(spellChecker('babies')).to.deep.equal([]);
+            });
+        });
+
+        context('non-noun', () => {
+            it('considers "goes" as an invalid word', () => {
+                expect(spellChecker('goes')).to.deep.equal(['goes']);
+            });
+
+            it('considers "gives" as an invalid word', () => {
+                expect(spellChecker('gives')).to.deep.equal(['gives']);
+            });
+
+            it('considers "acids" as an invalid word', () => {
+                expect(spellChecker('acids')).to.deep.equal(['acids']);
+            });
+
+            it('considers "bitters" as an invalid word', () => {
+                expect(spellChecker('bitters')).to.deep.equal(['bitters']);
+            });
+        });
     });
 });

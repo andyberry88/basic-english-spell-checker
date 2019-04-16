@@ -37,6 +37,15 @@ describe('spell checker', () => {
         it('should validate many words as correct', () => {
             expect(spellChecker('come account able bent cold take')).to.deep.equal([]);
         });
+
+        it('should validate many words separated by newlines as correct', () => {
+            expect(spellChecker(`come
+            account
+            able
+            bent
+            cold
+            take`)).to.deep.equal([]);
+        });
     });
 
     context('when there are errors', () => {

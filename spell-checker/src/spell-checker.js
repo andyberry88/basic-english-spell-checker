@@ -7,6 +7,8 @@ export default (input) => {
         return undefined;
     }
     const words = input.split(WORD_DELIMITER);
-    return words.reduce((carry, word) => (
-        wordValidator.isValid(word) ? carry : [...carry, word]), []);
+    return words.reduce((carry, word) => {
+        const trimmedWord = word.trim();
+        return trimmedWord.length === 0 || wordValidator.isValid(trimmedWord) ? carry : [...carry, trimmedWord];
+    }, []);
 };

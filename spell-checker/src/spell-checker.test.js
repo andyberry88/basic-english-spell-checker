@@ -46,6 +46,14 @@ describe('spell checker', () => {
             cold
             take`)).to.deep.equal([]);
         });
+
+        it('should validate many words separated by newline characters as correct', () => {
+            expect(spellChecker('come\naccount\nable\nbent\ncold\ntake')).to.deep.equal([]);
+        });
+
+        it('should validate many words separated by tab characters as correct', () => {
+            expect(spellChecker('come\taccount\table\tbent\tcold\ttake')).to.deep.equal([]);
+        });
     });
 
     context('when there are errors', () => {

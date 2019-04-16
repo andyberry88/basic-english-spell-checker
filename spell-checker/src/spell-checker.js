@@ -1,6 +1,6 @@
 import wordValidator from './word-validator';
 
-const WORD_DELIMITER = ' ';
+const WORD_DELIMITER = /\s/;
 
 export default (input) => {
     if (typeof input !== 'string') {

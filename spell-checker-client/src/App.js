@@ -19,6 +19,16 @@ const TextArea = styled.textarea`
   display: block;
 `;
 
+const ValidWordsWrapper = styled.div`
+  width: 80%;
+  margin: 50px auto 20px;
+  display: block;
+  iframe {
+    width: 100%;
+    height: 50vh;
+  }
+`;
+
 const checkSpellingErrors = (input, setSpellingErrors) => {
   setSpellingErrors(spellChecker(input));
 }
@@ -27,7 +37,6 @@ const App = () => {
   const [ spellingErrors, setSpellingErrors ] = useState([]);
   return (
     <div className="App">
-      <header className="App-header">
         {(() => {
           if (spellingErrors && spellingErrors.length > 0) {
             return <H1>There were spelling errors :-(</H1>
@@ -38,7 +47,13 @@ const App = () => {
         <SpellingErrorsWrapper>
           {JSON.stringify(spellingErrors)}
         </SpellingErrorsWrapper>
-      </header>
+        <ValidWordsWrapper>
+          <h1>Try these valid words</h1>
+          <iframe
+            title="Valid Words"
+            src="http://ogden.basic-english.org/words.html"
+          />
+        </ValidWordsWrapper>
     </div>
   );
 };

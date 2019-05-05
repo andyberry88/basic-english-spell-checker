@@ -36,3 +36,11 @@ Possible extension points and/or improvements for later:
 - in the spell checker utility, use the Trie more efficiently to fail fast when reading words from the stream
 - serialise the Trie to avoid having to populate it the first time the utility is used
 - add more variations (plurals etc.)
+
+## How do I run it?
+
+- clone the repo locally
+- `yarn install` from the root directory (this will install packages for each yarn workspace)
+- run `yarn test` in `spell-checker` to run the tests for the utility
+- run `yarn test` in `spell-checker-client` to run the tests for the client (there aren't any meaningful tests at the moment)
+- run `yarn start` in `spell-checker-client` to start the client

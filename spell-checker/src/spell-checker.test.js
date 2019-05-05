@@ -54,6 +54,11 @@ describe('spell checker', () => {
         it('should validate many words separated by tab characters as correct', () => {
             expect(spellChecker('come\taccount\table\tbent\tcold\ttake')).to.deep.equal([]);
         });
+
+        it('should validate valid words which are a substring of others as correct', () => {
+            // e.g. 'go' is valid, but is a substring of 'gold', 'government' and 'goat' which are all also valid
+            expect(spellChecker('go')).to.deep.equal([]);
+        });
     });
 
     context('when there are errors', () => {

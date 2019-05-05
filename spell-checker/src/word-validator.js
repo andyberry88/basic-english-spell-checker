@@ -34,7 +34,7 @@ validWords.qualities_opposites.forEach((word) => addWord(word));
 export default {
     isValid: (word) => {
         const foundWords = trie.get(word);
-        return (foundWords.length === 1 && foundWords[0].word === word)
+        return (foundWords.length > 0 && foundWords[0].word === word)
             || (foundWords.length === 2 && foundWords[0].word === word && foundWords[1].word === pluralize(word));
     },
 };
